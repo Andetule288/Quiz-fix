@@ -785,21 +785,23 @@
         }
 
         function toggleListening() {
-            if (!recognition) { 
-                alert("Voice recognition not supported in this browser."); 
-                return; 
-            }
-            if (isListening) { 
-                stopListening(); 
-            } else { 
-                try {
-                    recognition.start(); 
-                    isListening = true; 
-                    document.getElementById('micBtn').classList.add('listening');
-                    document.getElementById('micStatus').textContent = "Listening...";
-                } catch(e) {}
+            if (isListening) {
+                window.api.stopListening();
+                isListening = false;
+                document.getElementById('micBtn').classList.remove('listening');
+            } else {
+                window.api.startListening();
+                isListening = true;
+                document.getElementById('micBtn').classList.add('listening');
+                document.getElementById('micStatus').textContent = "Listening (Offline Mode)...";
             }
         }
+
+// Listen for the text coming back from the offline engine
+window.api.onVoiceResult((text) => {
+    document.getElementById('micStatus').textContent = text;
+    matchSpokenToOption(text);
+});
 
         function stopListening() {
             if (isListening && recognition) { 
