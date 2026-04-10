@@ -6,6 +6,7 @@
     <title>Cosmic Quiz Adventure!</title>
     <link href="https://cdn.jsdelivr.net/npm/@fontsource/comfortaa@5.1.0/400.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@fontsource/comfortaa@5.1.0/700.css" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
     <style>
         *, *::before, *::after {
             box-sizing: border-box;
@@ -1311,6 +1312,15 @@
         document.getElementById('playerName').addEventListener('keydown', (e) => {
             if (e.key === 'Enter') startQuiz();
         });
+
+        // Register Service Worker for PWA
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', () => {
+            navigator.serviceWorker.register('./sw.js')
+              .then(reg => console.log('SW Registered'))
+              .catch(err => console.log('SW Registration Failed', err));
+          });
+        }
     </script>
 </body>
 </html>
