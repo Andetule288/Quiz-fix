@@ -1,0 +1,15 @@
+{
+  "short_name": "CosmicQuiz",
+  "name": "Cosmic Quiz Adventure",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/1043/1043444.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./Quiz.html",
+  "background_color": "#0a0a2e",
+  "display": "standalone",
+  "theme_color": "#6c5ce7"
+}
